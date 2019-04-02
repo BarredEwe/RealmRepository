@@ -1,0 +1,6 @@
+framework module RealmRepository {
+  umbrella header "RealmRepository-umbrella.h"
+
+  export *
+  module * { export * }
+}
