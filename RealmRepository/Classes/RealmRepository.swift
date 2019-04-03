@@ -11,6 +11,8 @@ public class RealmRepository<T>: BaseRepository where T: RealmEntity, T: Object,
 
     typealias RealmEntityType = T
 
+    public init() { }
+
     public func save(item: T.EntityType) throws {
         let realm = try! Realm()
         try realm.write {
