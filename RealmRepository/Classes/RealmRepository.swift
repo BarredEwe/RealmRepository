@@ -7,16 +7,16 @@ import Foundation
 import BaseRepository
 import RealmSwift
 
-public class RealmRepository<T>: BaseRepository where T: RealmEntity, T: Object, T.EntityType: Entity {
+public class RealmRepository<T: ModelEntity>: BaseRepository where T == T.EntityType.ModelEntityType, T: Object {
 
-    typealias RealmEntityType = T
+    public typealias EntityType = T.EntityType
 
     public init() { }
 
     public func save(item: T.EntityType) throws {
         let realm = try! Realm()
         try realm.write {
-            realm.add(item.modelObject as! T)
+            realm.add(item.modelObject)
         }
     }
 
@@ -24,7 +24,7 @@ public class RealmRepository<T>: BaseRepository where T: RealmEntity, T: Object,
         let realm = try! Realm()
         try realm.write {
             items.forEach {
-                realm.add($0.modelObject as! T, update: true)
+                realm.add($0.modelObject, update: true)
             }
         }
     }
@@ -62,24 +62,16 @@ public class RealmRepository<T>: BaseRepository where T: RealmEntity, T: Object,
             objects = objects.sorted(byKeyPath: sorted.key, ascending: sorted.ascending)
         }
 
-        guard let page = page, !objects.isEmpty, page.limit != 0 else {
-            return objects.compactMap {
-                $0.plainObject
-            }
-        }
+        guard let page = page, !objects.isEmpty, page.limit != 0 else { return objects.compactMap { $0.plainObject } }
 
         let limit = objects.count > page.offset + page.limit ? page.offset + page.limit : objects.count
         let offset = objects.count < page.offset ? objects.count : page.offset
 
-        return objects[offset..<limit].compactMap {
-            $0.plainObject
-        }
+        return objects[offset..<limit].compactMap { $0.plainObject }
     }
 
     public func fetchAll() -> [T.EntityType] {
         let realm = try! Realm()
-        return realm.objects(T.self).compactMap {
-            $0.plainObject
-        }
+        return realm.objects(T.self).compactMap { $0.plainObject }
     }
 }

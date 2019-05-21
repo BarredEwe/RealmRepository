@@ -16,6 +16,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        try? repository.save(item: TestStruct(title: "Test title"))
+        print(repository.fetchAll())
     }
 }
-

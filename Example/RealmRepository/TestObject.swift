@@ -6,18 +6,30 @@
 //  Copyright © 2019 CocoaPods. All rights reserved.
 //
 
-import Foundation
+import BaseRepository
 import RealmSwift
 import RealmRepository
 
-class TestObject: Object, RealmEntity {
-    var plainObject: TestStruct = TestStruct(modelObject: TestObject())
+class TestObject: Object, ModelEntity {
 
     typealias EntityType = TestStruct
+
+    @objc dynamic public var title = "Title"
+
+    var plainObject: TestStruct { return TestStruct(title: title) }
+
+    convenience required init(entity: EntityType) {
+        self.init()
+        self.title = entity.title
+    }
 }
 
-struct TestStruct: Entity {
-    var modelObject: TestObject
+struct TestStruct: Codable {
+    var title = "Title"
+}
 
-    typealias RealmEntityType = TestObject
+extension TestStruct: Entity {
+    typealias ModelEntityType = TestObject
+
+    var modelObject: TestObject { return TestObject(entity: self) }
 }

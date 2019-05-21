@@ -5,6 +5,16 @@ public struct Sorted {
     public var ascending: Bool = true
 }
 
+public protocol Entity {
+    associatedtype ModelEntityType
+    var modelObject: ModelEntityType { get }
+}
+
+public protocol ModelEntity {
+    associatedtype EntityType: Entity
+    var plainObject: EntityType { get }
+}
+
 public protocol BaseRepository: class {
     associatedtype EntityType
     /* Save an item */
@@ -29,7 +39,7 @@ public protocol BaseRepository: class {
     func fetchAll() -> [EntityType]
 }
 
-// swiftlint:disable identifier_name
+// swiftlint: disable identifier_name
 public class AnyRepository<EntityType>: BaseRepository {
 
     let _save: (EntityType) throws -> Void
