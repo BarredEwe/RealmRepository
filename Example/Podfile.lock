@@ -1,19 +1,19 @@
 PODS:
-  - BaseRepository (0.1.6)
-  - Realm (3.15.0):
-    - Realm/Headers (= 3.15.0)
-  - Realm/Headers (3.15.0)
-  - RealmRepository (0.1.3):
+  - BaseRepository (0.2.0)
+  - Realm (5.4.0):
+    - Realm/Headers (= 5.4.0)
+  - Realm/Headers (5.4.0)
+  - RealmRepository (0.2.0):
     - BaseRepository
     - RealmSwift
-  - RealmSwift (3.15.0):
-    - Realm (= 3.15.0)
+  - RealmSwift (5.4.0):
+    - Realm (= 5.4.0)
 
 DEPENDENCIES:
   - RealmRepository (from `../`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - BaseRepository
     - Realm
     - RealmSwift
@@ -23,11 +23,11 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BaseRepository: a1c7fc766fad81e379456a3bdd1cff524c614a5e
-  Realm: 9b834e1be6062f544805252c812348872dc5d4ed
-  RealmRepository: 6e2f4acb4614a544c00ce559f09df55ef5994939
-  RealmSwift: 8a41886f8ab6efef9eb8df97de2f2bb911561a79
+  BaseRepository: 776b07f26a8a50399cf669147a1e39739e19e098
+  Realm: 8949757d76e2451a53d727954c607e49c2542b77
+  RealmRepository: 909c4a31fc07c7327a2b3c34582249efafa9cd88
+  RealmSwift: 0b7d7121e842724188123c6086831ae6d2952050
 
-PODFILE CHECKSUM: f193f6c76b046e854791a1ad59ce1a9dcac8bb85
+PODFILE CHECKSUM: d8b80b67377a17ea5c26f5a8d05d1b783ad154b9
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.9.3

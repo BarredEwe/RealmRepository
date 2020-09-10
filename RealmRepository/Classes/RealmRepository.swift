@@ -1,8 +1,3 @@
-//
-//  Created by grishutin on 19/12/2017.
-//  Copyright © 2017 bifit. All rights reserved.
-//
-
 import Foundation
 import BaseRepository
 import RealmSwift
@@ -24,7 +19,7 @@ public class RealmRepository<T: ModelEntity>: BaseRepository where T == T.Entity
         let realm = try! Realm()
         try realm.write {
             items.forEach {
-                realm.add($0.modelObject, update: true)
+                realm.add($0.modelObject, update: .all)
             }
         }
     }
